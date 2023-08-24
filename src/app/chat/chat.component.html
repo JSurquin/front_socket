@@ -1,0 +1,29 @@
+<div class="min-h-screen max-h-screen h-screen flex flex-col justify-end">
+  <div class="overflow-auto">
+    <div
+      class="p-4 shadow-xl border rounded-lg my-2"
+      *ngFor="let msgObj of messages"
+      [ngClass]="{
+        'bg-white': msgObj.fromMe,
+        'bg-blue-500 text-white': !msgObj.fromMe
+      }"
+    >
+      {{ msgObj.text }}
+    </div>
+  </div>
+  <div class="mb-2">
+    <input
+      class="border-2 w-full p-3"
+      [(ngModel)]="message"
+      (keyup.enter)="send()"
+      placeholder="Écrivez un message"
+    />
+  </div>
+  <button
+    class="bg-blue-400 mb-4 rounded-lg p-2 text-white"
+    [disabled]="!message.trim()"
+    (click)="send()"
+  >
+    Envoyer votre message
+  </button>
+</div>
